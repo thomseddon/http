@@ -1,0 +1,6 @@
+
+test:
+	phpunit
+
+.PHONY: test
+

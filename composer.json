@@ -1,0 +1,27 @@
+{
+  "name": "thomseddon/http",
+  "description": "Beautifully simple PHP HTTP client inspired by node's superagent",
+  "keywords": [
+    "http",
+    "curl"
+  ],
+  "homepage": "https://github.com/thomseddon/http",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Thom Seddon",
+      "email": "thom@seddonmedia.co.uk"
+    }
+  ],
+  "require": {
+    "php": ">=5.3",
+    "ext-curl": "*",
+    "ext-json": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "4.1.*"
+  },
+  "autoload": {
+    "classmap": ["lib/HTTP"]
+  }
+}
