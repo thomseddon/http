@@ -91,19 +91,19 @@ class stdClass#3 (8) {
 
 #### HTTP::get(string $url)
 
-Return an API_Request instance with method set to `GET`
+Return an HTTP_Request instance with method set to `GET`
 
 #### HTTP::post(string $url)
 
-Return an API_Request instance with method set to `POST`
+Return an HTTP_Request instance with method set to `POST`
 
 #### HTTP::put(string $url)
 
-Return an API_Request instance with method set to `PUT`
+Return an HTTP_Request instance with method set to `PUT`
 
 #### HTTP::del(string $url)
 
-Return an API_Request instance with method set to `DELETE`
+Return an HTTP_Request instance with method set to `DELETE`
 
 #### HTTP::configure(array $config)
 
@@ -114,14 +114,14 @@ Two keys can be set:
 
 ```php
 
-API::configure(array(
+HTTP::configure(array(
   'base' => 'http://api.mysite.com/v1',
   'headers' => array(
     'User-Agent' => 'Frontend Service (0.1)'
   )
 ));
 
-API::get('/status'); // GET's http://api.mysite.com/v1/status
+HTTP::get('/status'); // GET's http://api.mysite.com/v1/status
 ```
 
 ### HTTP_Request
@@ -142,11 +142,11 @@ Set headers, the following are equivalent:
 
 ```php
 
-API::get('http://google.com')->set(array(
+HTTP::get('http://google.com')->set(array(
   'User-Agent' => 'My Service (0.1)'
 ));
-API::get('http://google.com')->set('User-Agent', 'My Service (0.1)');
-API::get('http://google.com')->set('User-Agent: My Service (0.1)');
+HTTP::get('http://google.com')->set('User-Agent', 'My Service (0.1)');
+HTTP::get('http://google.com')->set('User-Agent: My Service (0.1)');
 
 ```
 
