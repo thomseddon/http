@@ -1,5 +1,5 @@
 
-# HTTP
+# HTTP [![Build Status](https://travis-ci.org/thomseddon/http.svg)](https://travis-ci.org/thomseddon/http)
 
 Beautifully simple PHP HTTP client inspired by node's [superagent](https://github.com/visionmedia/superagent).
 
