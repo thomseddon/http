@@ -69,10 +69,10 @@ class HTTP {
   public static function configure($config)
   {
     if ($config['base'])
-      self::$baseUrl = $config['base'];
+      HTTP::$baseUrl = $config['base'];
 
     if ($config['headers'])
-      array_merge(self::$baseHeaders, $config['headers']);
+      array_merge(HTTP::$baseHeaders, $config['headers']);
   }
 
 }
