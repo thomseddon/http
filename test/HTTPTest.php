@@ -119,6 +119,20 @@ class HTTPTest extends PHPUnit_Framework_TestCase
     ), $res->body()->json);
   }
 
+  public function testErrorEvent()
+  {
+    global $called;
+    $called = false;
+
+    HTTP::on('error', function () {
+      global $called;
+      $called = true;
+    });
+    $res = HTTP::get('http://incorrect.wrong')->send();
+
+    $this->assertTrue($called);
+  }
+
   public function testConfigure()
   {
     HTTP::configure(array(

@@ -12,9 +12,16 @@ class HTTP {
   /**
    * Base Headers
    *
-   * @var boolean|string
+   * @var array
    */
   public static $baseHeaders = array();
+
+  /**
+   * Event Handlers
+   *
+   * @var array
+   */
+  public static $handlers = array();
 
   /**
    * Init a get request
@@ -73,6 +80,39 @@ class HTTP {
 
     if ($config['headers'])
       array_merge(HTTP::$baseHeaders, $config['headers']);
+  }
+
+  /**
+   * Add and event handler
+   *
+   * @param  string   $event   Name of event
+   * @param  function $handler [description]
+   * @return void
+   */
+  public static function on($event, $handler)
+  {
+    if (!array_key_exists($event, HTTP::$handlers))
+      HTTP::$handlers[$event] = array();
+
+    HTTP::$handlers[$event][] = $handler;
+  }
+
+  /**
+   * Emit an event
+   *
+   * @param  string   $event   Name of event
+   * @param  function $handler [description]
+   * @return void
+   */
+  public static function emit($event, $data = null)
+  {
+    if (!array_key_exists($event, HTTP::$handlers))
+      return;
+
+
+    array_map(function ($handler) use ($data) {
+      $handler($data);
+    }, HTTP::$handlers[$event]);
   }
 
 }

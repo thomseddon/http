@@ -43,6 +43,7 @@ class HTTP_Response {
 
     if ($body === false) {
       $this->error = true;
+      HTTP::emit('error');
     } else {
       $this->parseBody();
     }

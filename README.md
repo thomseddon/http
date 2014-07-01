@@ -124,6 +124,14 @@ HTTP::configure(array(
 HTTP::get('/status'); // GET's http://api.mysite.com/v1/status
 ```
 
+#### HTTP::on(string $event, function $handler)
+
+Add an handler that will be called when `$event` occurs
+
+#### HTTP::emit(string $event, mixed $data = null)
+
+Emit an event, `$data` will be passed to any handlers as the first argument
+
 ### HTTP_Request
 
 All methods (except send) return the `$this` and so can be chained for extra fun.
