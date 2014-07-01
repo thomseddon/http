@@ -79,7 +79,7 @@ class HTTP {
       HTTP::$baseUrl = $config['base'];
 
     if ($config['headers'])
-      array_merge(HTTP::$baseHeaders, $config['headers']);
+      HTTP::$baseHeaders = array_merge(HTTP::$baseHeaders, $config['headers']);
   }
 
   /**
