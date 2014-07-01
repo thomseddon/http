@@ -95,7 +95,7 @@ class HTTP_Response {
    */
   private function parseBody()
   {
-    if ($this->info['content_type'] === 'application/json') {
+    if (strpos($this->info['content_type'], 'application/json') !== false) {
       $body = json_decode($this->rawBody);
 
       if ($body === null) {
