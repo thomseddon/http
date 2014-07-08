@@ -117,6 +117,33 @@ class HTTP_Request {
   }
 
   /**
+   * Attach a file
+   *
+   * @param  array|string  $file
+   * @param  string        $path
+   * @return HTTP
+   */
+  public function attach($files, $path = null)
+  {
+    if (!is_array($this->body))
+      $this->body = array();
+
+    if ($path)
+      $files = array($files => $path);
+
+    $finfo = finfo_open(FILEINFO_MIME_TYPE);
+    foreach ($files as &$path) {
+      if (!file_exists($path))
+        throw Exception('File does not exist');
+
+      $path = new CurlFile($path, finfo_file($finfo, $path));
+    }
+
+    $this->body = array_merge($this->body, $files);
+    return $this;
+  }
+
+  /**
    * Execute request
    *
    * @return HTTP_Response

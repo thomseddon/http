@@ -119,6 +119,33 @@ class HTTPTest extends PHPUnit_Framework_TestCase
     ), $res->body()->json);
   }
 
+  public function testPOSTFileArray()
+  {
+    $res = HTTP::post('http://httpbin.org/post')->attach(array(
+      'asset' => __DIR__ . '/files/cat.png'
+    ))->send();
+
+    $this->assertFalse($res->error());
+    $this->assertEquals(200, $res->status());
+    $this->assertEquals((object) array(
+      'asset' => 'data:image/jpeg;base64,' .
+        base64_encode(file_get_contents(__DIR__ . '/files/cat.png'))
+    ), $res->body()->files);
+  }
+
+  public function testPOSTFileKV()
+  {
+    $res = HTTP::post('http://httpbin.org/post')->attach('asset',
+       __DIR__ . '/files/cat.png')->send();
+
+    $this->assertFalse($res->error());
+    $this->assertEquals(200, $res->status());
+    $this->assertEquals((object) array(
+      'asset' => 'data:image/jpeg;base64,' .
+        base64_encode(file_get_contents(__DIR__ . '/files/cat.png'))
+    ), $res->body()->files);
+  }
+
   public function testErrorEvent()
   {
     global $called;

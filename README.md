@@ -166,6 +166,18 @@ Set query params, expects `key => value` array
 
 Set's json body: `json_encodes` data and sets `Content-Type` and `Content-Length` headers
 
+#### attach(mixed $files, $path = null)
+
+Attach a file, the following are equivalent:
+
+```php
+
+HTTP::post('http://uploads.com')->attach(array(
+  'cat' => '/cats/large.png'
+));
+HTTP::post('http://uploads.com')->attach('cat', '/cats/large.png');
+```
+
 #### send()
 
 Sends the request, returns a `HTTP_Response`
